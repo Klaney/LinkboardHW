@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/login' => "sessions#create"
   get '/login' => "sessions#destroy"
   
+  post '/posts/new' => "posts#new"
 
   resources :posts
 
