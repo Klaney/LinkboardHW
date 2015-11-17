@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
+  post '/posts/new' => "posts#new"
+  resources :posts, only: [:new, :create, :show] do
+    resources :comments, only: [:index, :nex, :create]
+  end
+
   get '/signup' => "users#new"
   post '/signup' => "users#create"
 
@@ -9,9 +14,7 @@ Rails.application.routes.draw do
   post '/login' => "sessions#create"
   get '/login' => "sessions#destroy"
   
-  post '/posts/new' => "posts#new"
 
-  resources :posts
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

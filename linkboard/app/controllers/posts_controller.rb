@@ -8,8 +8,12 @@ class PostsController < ApplicationController
   end
 
   def create
-  	Post.create post_params
+  	# Post.create post_params
   	redirect_to root_path
+  	post = Post.create post_params do |p|
+  		p.user_id = @current_user.id
+  		p.save
+  	end
   end
 
   private

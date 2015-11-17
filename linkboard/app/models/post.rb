@@ -11,12 +11,4 @@ class Post < ActiveRecord::Base
   validates :link,
   presence: true,
   :url => true
-
-  validates :name,
-  presence: true,
-  length: {
-  	maximum: 20
-  }
-
-
 end

@@ -7,7 +7,18 @@ class User < ActiveRecord::Base
 	has_many :post
 
 	validates :password,
-	presence: true	
+	presence: true,
+	length: {
+		minimum: 8,
+		maximum: 99
+	}	,
+	confirmation: true
+
+	validates :name,
+  		presence: true,
+  		length: {
+  			maximum: 20
+  		}
 
 	has_secure_password
 
