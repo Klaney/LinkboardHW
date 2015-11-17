@@ -1,2 +1,11 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+
+<span>
+	<h1>Come look at all the fun posts!</h1>
+</span>
+
+<% @posts.each do |post|%>
+	<div class="well post">
+		<h2><a href="<%= post.link%>"><%=post.title%></a></h2>
+		<p>By:<%= post.user.name %></p>
+	</div>
+<%end%>
