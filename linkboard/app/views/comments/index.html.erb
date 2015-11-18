@@ -1,0 +1,5 @@
+<h1>Create a new comment</h1>
+<%= bootstrap_form_for [@post,@comment] do |c| %>
+	<%= c.text_field :body, placeholder: 'Body'%>
+	<%= c.submit 'Submit your post' %>
+<% end %>

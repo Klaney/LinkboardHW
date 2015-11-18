@@ -1,18 +1,28 @@
 Rails.application.routes.draw do
 
+  get '/comments' => 'comments#new'
+
+  post '/comments' => 'comments#create'
+
+  get '/comments' => 'comments#delete'
+
   root 'posts#index'
 
   post '/posts/new' => "posts#new"
-  resources :posts, only: [:new, :create, :show] do
-    resources :comments, only: [:index, :nex, :create]
+
+  resources :posts, only: [:new, :create, :show, :delete] do
+    resources :comments, only: [:index, :new, :create, :destroy]
   end
+
+  delete "/posts/:post_id/comments/:id" => "comments#destroy", as: "delete_post_comment"
+  post "/posts/:post_id/comments/:id" => "comments#post"
 
   get '/signup' => "users#new"
   post '/signup' => "users#create"
 
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"
-  get '/login' => "sessions#destroy"
+  get '/logout' => "sessions#destroy"
   
 
 

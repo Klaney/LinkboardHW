@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
 	uniqueness: {case_sensitive: false},
 	email: true
 
-	has_many :post
+	has_many :posts
+	has_many :comments
 
 	validates :password,
 	presence: true,
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
   		length: {
   			maximum: 20
   		}
-
+  	validates_presence_of :password, on: :create
 	has_secure_password
 
 	def self.authenticate email, password
