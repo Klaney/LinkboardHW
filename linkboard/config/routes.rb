@@ -10,12 +10,14 @@ Rails.application.routes.draw do
 
   post '/posts/new' => "posts#new"
 
-  resources :posts, only: [:new, :create, :show, :delete] do
+  resources :posts, only: [:new, :create, :show, :destroy] do
     resources :comments, only: [:index, :new, :create, :destroy]
   end
 
   delete "/posts/:post_id/comments/:id" => "comments#destroy", as: "delete_post_comment"
   post "/posts/:post_id/comments/:id" => "comments#post"
+
+  
 
   get '/signup' => "users#new"
   post '/signup' => "users#create"

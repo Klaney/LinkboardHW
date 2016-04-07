@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :is_authenticated?, except: [:index]
+  before_action :is_authenticated?, except: [:index, :destroy]
 
   def index
   	@posts = Post.all
@@ -8,6 +8,10 @@ class PostsController < ApplicationController
 
   def new
   	@post= Post.new
+  end
+
+  def show
+    redirect_to root_path
   end
 
   def create
@@ -24,6 +28,13 @@ class PostsController < ApplicationController
       flash[:danger] = messages.join(', ')
       redirect_to new_post_path
     end
+  end
+
+  def destroy
+    id =:params[:id]
+    post = Post.find_by_id(id)
+    post.destroy
+    redirect_to root_path
   end
 
   private
